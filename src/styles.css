@@ -1,0 +1,276 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  /* New football-themed color palette */
+  --color-pitch-100: oklch(0.96 0.06 145);
+  --color-pitch-200: oklch(0.90 0.12 145);
+  --color-pitch-300: oklch(0.82 0.18 145);
+  --color-pitch-400: oklch(0.75 0.22 145);
+  --color-pitch-500: oklch(0.67 0.25 145); /* Main grass green */
+  --color-pitch-600: oklch(0.58 0.22 145);
+  --color-pitch-700: oklch(0.48 0.18 145);
+  --color-pitch-800: oklch(0.38 0.14 145);
+  --color-pitch-900: oklch(0.28 0.10 145);
+  
+  --color-jersey-100: oklch(0.96 0.03 255);
+  --color-jersey-200: oklch(0.90 0.06 255);
+  --color-jersey-300: oklch(0.80 0.12 255);
+  --color-jersey-400: oklch(0.70 0.18 255); /* Team blue */
+  --color-jersey-500: oklch(0.60 0.24 255);
+  --color-jersey-600: oklch(0.50 0.20 255);
+  --color-jersey-700: oklch(0.40 0.16 255);
+  --color-jersey-800: oklch(0.30 0.12 255);
+  --color-jersey-900: oklch(0.20 0.08 255);
+  
+  --color-referee-100: oklch(0.97 0.04 85);
+  --color-referee-200: oklch(0.92 0.08 85);
+  --color-referee-300: oklch(0.85 0.14 85); /* Referee yellow */
+  --color-referee-400: oklch(0.78 0.18 85);
+  --color-referee-500: oklch(0.70 0.22 85);
+  --color-referee-600: oklch(0.62 0.18 85);
+  --color-referee-700: oklch(0.54 0.14 85);
+  --color-referee-800: oklch(0.46 0.10 85);
+  --color-referee-900: oklch(0.38 0.06 85);
+  
+  --color-crowd-50: oklch(0.98 0.005 0);
+  --color-crowd-100: oklch(0.95 0.01 0);
+  --color-crowd-200: oklch(0.90 0.02 0);
+  --color-crowd-300: oklch(0.85 0.03 0);
+  --color-crowd-400: oklch(0.75 0.03 0);
+  --color-crowd-500: oklch(0.65 0.03 0); /* Stadium crowd */
+  --color-crowd-600: oklch(0.55 0.025 0);
+  --color-crowd-700: oklch(0.45 0.02 0);
+  --color-crowd-800: oklch(0.35 0.015 0);
+  --color-crowd-900: oklch(0.20 0.01 0);
+  
+  --color-champion-100: oklch(0.97 0.05 85);
+  --color-champion-200: oklch(0.93 0.10 85);
+  --color-champion-300: oklch(0.88 0.15 85);
+  --color-champion-400: oklch(0.84 0.18 85); /* Trophy gold */
+  --color-champion-500: oklch(0.80 0.22 85);
+  --color-champion-600: oklch(0.70 0.18 85);
+  --color-champion-700: oklch(0.60 0.14 85);
+  --color-champion-800: oklch(0.50 0.10 85);
+  --color-champion-900: oklch(0.40 0.06 85);
+  
+  --color-error-100: oklch(0.95 0.06 25);
+  --color-error-200: oklch(0.90 0.12 25);
+  --color-error-300: oklch(0.85 0.18 25);
+  --color-error-400: oklch(0.75 0.24 25);
+  --color-error-500: oklch(0.65 0.30 25); /* Red card */
+  --color-error-600: oklch(0.55 0.24 25);
+  --color-error-700: oklch(0.45 0.18 25);
+  --color-error-800: oklch(0.35 0.12 25);
+  --color-error-900: oklch(0.25 0.06 25);
+  
+  /* Typography */
+  --font-display: "Montserrat", "Inter", sans-serif;
+  --font-body: "Roboto", "Inter", sans-serif;
+  
+  /* Spacing */
+  --spacing: 0.25rem;
+  
+  /* Animation */
+  --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+/* Custom base styles */
+@layer base {
+  body {
+    @apply bg-gradient-to-b from-pitch-200 to-pitch-100 min-h-screen text-crowd-800 font-body;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold text-pitch-900;
+  }
+}
+
+/* Animations */
+@keyframes pulse-winner {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15%, 45%, 75% { transform: translateX(-6px); }
+  30%, 60%, 90% { transform: translateX(6px); }
+}
+
+@keyframes confetti-slow {
+  0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
+  100% { transform: translate3d(25px, 105px, 0) rotateX(360deg) rotateY(180deg); }
+}
+
+@keyframes confetti-medium {
+  0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
+  100% { transform: translate3d(100px, 105px, 0) rotateX(100deg) rotateY(360deg); }
+}
+
+@keyframes confetti-fast {
+  0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
+  100% { transform: translate3d(-50px, 105px, 0) rotateX(360deg) rotateY(180deg); }
+}
+
+/* Custom components */
+@layer components {
+  .btn-primary {
+    @apply bg-pitch-500 hover:bg-pitch-600 text-white py-3 px-6 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg transform hover:translate-y-[-2px] active:translate-y-[0];
+  }
+  
+  .btn-secondary {
+    @apply bg-jersey-400 hover:bg-jersey-500 text-white py-3 px-6 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-pitch-500 text-pitch-500 hover:bg-pitch-100 py-3 px-6 rounded-lg font-semibold transition-all;
+  }
+  
+  .quiz-card {
+    @apply bg-white rounded-xl shadow-lg p-6 relative overflow-hidden transition-all duration-300;
+  }
+  
+  .quiz-card::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1 bg-pitch-500;
+  }
+  
+  .answer-option {
+    @apply block w-full text-left px-4 py-3 mb-3 border-2 rounded-lg transition-all duration-200 hover:shadow-md;
+  }
+  
+  .answer-option-normal {
+    @apply border-crowd-300 hover:border-pitch-400 text-crowd-700;
+  }
+  
+  .answer-option-selected {
+    @apply border-jersey-500 bg-jersey-100 text-jersey-800 font-medium;
+  }
+  
+  .answer-option-correct {
+    @apply border-pitch-500 bg-pitch-100 text-pitch-800 font-medium animate-pulse-winner;
+  }
+  
+  .answer-option-incorrect {
+    @apply border-error-500 bg-error-100 text-error-800 font-medium animate-shake;
+  }
+  
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-easy {
+    @apply bg-pitch-100 text-pitch-800;
+  }
+  
+  .badge-medium {
+    @apply bg-referee-100 text-referee-800;
+  }
+  
+  .badge-hard {
+    @apply bg-error-100 text-error-800;
+  }
+  
+  .game-modal {
+    @apply fixed inset-0 flex items-center justify-center z-50 p-4 bg-crowd-900 bg-opacity-40 backdrop-blur-sm transition-all duration-300;
+  }
+  
+  .game-modal-content {
+    @apply bg-gradient-to-br from-white to-pitch-50 rounded-2xl shadow-2xl max-w-lg w-full mx-auto overflow-hidden relative transform transition-all duration-300;
+  }
+  
+  .game-modal-header {
+    @apply bg-gradient-to-r from-pitch-500 to-pitch-600 px-6 py-4 text-white flex items-center justify-between;
+  }
+  
+  .game-modal-body {
+    @apply p-6;
+  }
+  
+  .scoreboard {
+    @apply bg-white rounded-lg shadow-md p-4 flex items-center justify-between;
+  }
+  
+  .timer-bar {
+    @apply h-2 bg-crowd-200 rounded-full overflow-hidden;
+  }
+  
+  .timer-progress {
+    @apply h-full bg-jersey-500 transition-all duration-100;
+  }
+  
+  .power-up-btn {
+    @apply flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-crowd-600 hover:text-champion-500 transition-all hover:scale-110 active:scale-95;
+  }
+  
+  .streak-counter {
+    @apply flex items-center text-sm font-semibold;
+  }
+  
+  .streak-counter-icon {
+    @apply text-referee-500 mr-1;
+  }
+  
+  .confetti {
+    @apply pointer-events-none absolute w-4 h-4 rounded-full;
+  }
+  
+  .confetti-slow {
+    animation: confetti-slow 2.5s linear infinite;
+  }
+  
+  .confetti-medium {
+    animation: confetti-medium 2s linear infinite;
+  }
+  
+  .confetti-fast {
+    animation: confetti-fast 1.5s linear infinite;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .animate-pulse-winner {
+    animation: pulse-winner 1.5s infinite;
+  }
+  
+  .animate-shake {
+    animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+  }
+  
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .bg-field-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zm20.97 0l9.315 9.314-1.414 1.414L34.828 0h2.83zM22.344 0L13.03 9.314l1.414 1.414L25.172 0h-2.83zM32 0l12.142 12.142-1.414 1.414L30 .828 17.272 13.556l-1.414-1.414L28 0h4zM.284 0l28 28-1.414 1.414L0 2.544V0h.284zM0 5.373l25.456 25.455-1.414 1.415L0 8.2V5.374zm0 5.656l22.627 22.627-1.414 1.414L0 13.86v-2.83zm0 5.656l19.8 19.8-1.415 1.413L0 19.514v-2.83zm0 5.657l16.97 16.97-1.414 1.415L0 25.172v-2.83zM0 28l14.142 14.142-1.414 1.414L0 30.828V28zm0 5.657L11.314 44.97 9.9 46.386l-9.9-9.9v-2.828zm0 5.657L8.485 47.8 7.07 49.212 0 42.143v-2.83zm0 5.657l5.657 5.657-1.414 1.415L0 47.8v-2.83zm0 5.657l2.828 2.83-1.414 1.413L0 53.456v-2.83zM54.627 60L30 35.373 5.373 60H8.2L30 38.2 51.8 60h2.827zm-5.656 0L30 41.03 11.03 60h2.828L30 43.858 46.142 60h2.83zm-5.656 0L30 46.686 16.686 60h2.83L30 49.515 40.485 60h2.83zm-5.657 0L30 52.343 22.344 60h2.83L30 55.172 34.828 60h2.83zM32 60l-2-2-2 2h4zM59.716 0l-28 28 1.414 1.414L60 2.544V0h-.284zM60 5.373L34.544 30.828l1.414 1.415L60 8.2V5.374zm0 5.656L37.373 33.656l1.414 1.414L60 13.86v-2.83zm0 5.656l-19.8 19.8 1.415 1.413L60 19.514v-2.83zm0 5.657l-16.97 16.97 1.414 1.415L60 25.172v-2.83zM60 28L45.858 42.142l1.414 1.414L60 30.828V28zm0 5.657L48.686 44.97l1.415 1.415 9.9-9.9v-2.828zm0 5.657L51.515 47.8l1.414 1.413 7.07-7.07v-2.83zm0 5.657l-5.657 5.657 1.414 1.415L60 47.8v-2.83zm0 5.657l-2.828 2.83 1.414 1.413L60 53.456v-2.83zM30 34.142l-1.414 1.414L30 37.97l1.414-1.414L30 34.142zm-5.657-5.656l-1.414 1.414L30 37.142l7.07-7.07-1.414-1.415L30 34.143l-5.657-5.657zm-5.657-5.657l-1.414 1.414L30 37.37l13.557-13.557-1.414-1.414L30 34.428l-11.314-11.3zm-5.656-5.657l-1.415 1.414L30 37.57 42.4 25.17l-1.414-1.415L30 34.686l-16.97-16.97zm-5.657-5.656l-1.414 1.415L30 37.8l19.8-19.8-1.415-1.414L30 34.97l-22.627-22.627zM5.373 5.373L3.96 6.787 30 32.83l26.042-26.043-1.414-1.414L30 30.414 5.374 5.373z' fill='%2308C757' fill-opacity='.08' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+  
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}
