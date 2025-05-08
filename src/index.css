@@ -1,7 +1,45 @@
-/* Base CSS with Tailwind */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind v4 setup */
+@import "tailwindcss";
+
+@layer utilities {
+  /* Font utilities that are missing */
+  .font-bold {
+    font-weight: bold;
+  }
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  .font-medium {
+    font-weight: 500;
+  }
+  
+  .font-normal {
+    font-weight: 400;
+  }
+  
+  .font-light {
+    font-weight: 300;
+  }
+  
+  /* Other potentially missing utilities */
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  
+  .rounded-xl {
+    border-radius: 0.75rem;
+  }
+  
+  .shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+}
 
 :root {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -100,98 +138,204 @@ h3 {
 
 /* Utility classes for answer options in the quiz */
 .answer-option {
-  @apply relative block w-full text-left px-4 py-3 mb-3 
-         border-2 rounded-lg transition-all duration-200 overflow-hidden;
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  border-width: 2px;
+  border-radius: 0.5rem;
+  transition-property: all;
+  transition-duration: 200ms;
+  overflow: hidden;
 }
 
 .answer-option-correct {
-  @apply border-emerald-500 bg-emerald-100 text-emerald-900 font-medium;
+  border-color: #10b981;
+  background-color: #d1fae5;
+  color: #064e3b;
+  font-weight: 500;
   animation: pulse 1.5s infinite;
 }
 
 .answer-option-incorrect {
-  @apply border-red-500 bg-red-100 text-red-900 font-medium;
+  border-color: #ef4444;
+  background-color: #fee2e2;
+  color: #7f1d1d;
+  font-weight: 500;
   animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both;
 }
 
 .answer-option-selected {
-  @apply border-blue-500 bg-blue-100 text-blue-900 font-medium shadow-md;
+  border-color: #3b82f6;
+  background-color: #dbeafe;
+  color: #1e3a8a;
+  font-weight: 500;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .answer-option-normal {
-  @apply border-gray-300 bg-white text-gray-700 hover:border-blue-400 hover:bg-blue-50;
+  border-color: #d1d5db;
+  background-color: white;
+  color: #374151;
+}
+.answer-option-normal:hover {
+  border-color: #60a5fa;
+  background-color: #eff6ff;
 }
 
 /* Button styling */
 .btn-primary {
-  @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4
-         rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition-property: all;
+  transition-duration: 200ms;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.btn-primary:hover {
+  background-color: #2563eb;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-secondary {
-  @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4
-         rounded-lg transition-all duration-200;
+  background-color: #e5e7eb;
+  color: #1f2937;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition-property: all;
+  transition-duration: 200ms;
+}
+.btn-secondary:hover {
+  background-color: #d1d5db;
 }
 
 .btn-success {
-  @apply bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4
-         rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
+  background-color: #10b981;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition-property: all;
+  transition-duration: 200ms;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.btn-success:hover {
+  background-color: #059669;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-danger {
-  @apply bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4
-         rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
+  background-color: #ef4444;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition-property: all;
+  transition-duration: 200ms;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.btn-danger:hover {
+  background-color: #dc2626;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-outline {
-  @apply border-2 border-blue-500 text-blue-500 hover:bg-blue-50 py-2 px-4
-         rounded-lg font-semibold transition-all duration-200;
+  border-width: 2px;
+  border-color: #3b82f6;
+  color: #3b82f6;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition-property: all;
+  transition-duration: 200ms;
+}
+.btn-outline:hover {
+  background-color: #eff6ff;
 }
 
 /* Game board styling */
 .game-board {
-  @apply bg-white rounded-xl shadow-lg overflow-hidden;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 }
 
 .game-header {
-  @apply bg-gradient-to-r from-blue-500 to-blue-600 p-4 text-white;
+  background-image: linear-gradient(to right, #3b82f6, #2563eb);
+  padding: 1rem;
+  color: white;
 }
 
 .game-content {
-  @apply p-4;
+  padding: 1rem;
 }
 
 /* Modal styling */
 .modal-backdrop {
-  @apply fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm
-         flex items-center justify-center z-50 p-4;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
 }
 
 .modal-content {
-  @apply bg-white rounded-xl shadow-xl max-w-md w-full mx-auto
-         overflow-hidden transform transition-all duration-300;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  max-width: 28rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  transform: translateY(0) scale(1);
+  transition-property: all;
+  transition-duration: 300ms;
 }
 
 .modal-header {
-  @apply bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-3
-         text-white flex items-center justify-between;
+  background-image: linear-gradient(to right, #3b82f6, #2563eb);
+  padding: 0.75rem 1rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .modal-body {
-  @apply p-4;
+  padding: 1rem;
 }
 
 /* Score banner */
 .score-banner {
-  @apply bg-white rounded-lg shadow-md p-4 mb-4;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .timer-bar {
-  @apply h-2 bg-gray-200 rounded-full overflow-hidden;
+  height: 0.5rem;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
 }
 
 .timer-progress {
-  @apply h-full transition-all duration-100;
+  height: 100%;
+  transition-property: all;
+  transition-duration: 100ms;
 }
 
 /* No scrollbar utility */

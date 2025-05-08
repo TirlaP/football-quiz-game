@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @theme {
   /* New football-themed color palette */
@@ -69,6 +67,17 @@
   --font-display: "Montserrat", "Inter", sans-serif;
   --font-body: "Roboto", "Inter", sans-serif;
   
+  /* Font weights - CRITICAL for fixing the font-bold error */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  
   /* Spacing */
   --spacing: 0.25rem;
   
@@ -89,11 +98,16 @@
 /* Custom base styles */
 @layer base {
   body {
-    @apply bg-gradient-to-b from-pitch-200 to-pitch-100 min-h-screen text-crowd-800 font-body;
+    background-image: linear-gradient(to bottom, var(--color-pitch-200), var(--color-pitch-100));
+    min-height: 100vh;
+    color: var(--color-crowd-800);
+    font-family: var(--font-body);
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-bold text-pitch-900;
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-pitch-900);
   }
 }
 
@@ -127,104 +141,272 @@
 /* Custom components */
 @layer components {
   .btn-primary {
-    @apply bg-pitch-500 hover:bg-pitch-600 text-white py-3 px-6 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg transform hover:translate-y-[-2px] active:translate-y-[0];
+    background-color: var(--color-pitch-500);
+    color: white;
+    padding-top: calc(var(--spacing) * 3);
+    padding-bottom: calc(var(--spacing) * 3);
+    padding-left: calc(var(--spacing) * 6);
+    padding-right: calc(var(--spacing) * 6);
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+    transition-property: all;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--color-pitch-600);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0);
   }
   
   .btn-secondary {
-    @apply bg-jersey-400 hover:bg-jersey-500 text-white py-3 px-6 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg;
+    background-color: var(--color-jersey-400);
+    color: white;
+    padding-top: calc(var(--spacing) * 3);
+    padding-bottom: calc(var(--spacing) * 3);
+    padding-left: calc(var(--spacing) * 6);
+    padding-right: calc(var(--spacing) * 6);
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+    transition-property: all;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--color-jersey-500);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   }
   
   .btn-outline {
-    @apply border-2 border-pitch-500 text-pitch-500 hover:bg-pitch-100 py-3 px-6 rounded-lg font-semibold transition-all;
+    border-width: 2px;
+    border-color: var(--color-pitch-500);
+    color: var(--color-pitch-500);
+    padding-top: calc(var(--spacing) * 3);
+    padding-bottom: calc(var(--spacing) * 3);
+    padding-left: calc(var(--spacing) * 6);
+    padding-right: calc(var(--spacing) * 6);
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+    transition-property: all;
+  }
+  
+  .btn-outline:hover {
+    background-color: var(--color-pitch-100);
   }
   
   .quiz-card {
-    @apply bg-white rounded-xl shadow-lg p-6 relative overflow-hidden transition-all duration-300;
+    background-color: white;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    padding: calc(var(--spacing) * 6);
+    position: relative;
+    overflow: hidden;
+    transition-property: all;
+    transition-duration: 300ms;
   }
   
   .quiz-card::before {
     content: '';
-    @apply absolute top-0 left-0 w-full h-1 bg-pitch-500;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-pitch-500);
   }
   
   .answer-option {
-    @apply block w-full text-left px-4 py-3 mb-3 border-2 rounded-lg transition-all duration-200 hover:shadow-md;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding-left: calc(var(--spacing) * 4);
+    padding-right: calc(var(--spacing) * 4);
+    padding-top: calc(var(--spacing) * 3);
+    padding-bottom: calc(var(--spacing) * 3);
+    margin-bottom: calc(var(--spacing) * 3);
+    border-width: 2px;
+    border-radius: var(--radius-lg);
+    transition-property: all;
+    transition-duration: 200ms;
+  }
+  
+  .answer-option:hover {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   }
   
   .answer-option-normal {
-    @apply border-crowd-300 hover:border-pitch-400 text-crowd-700;
+    border-color: var(--color-crowd-300);
+    color: var(--color-crowd-700);
+  }
+  
+  .answer-option-normal:hover {
+    border-color: var(--color-pitch-400);
   }
   
   .answer-option-selected {
-    @apply border-jersey-500 bg-jersey-100 text-jersey-800 font-medium;
+    border-color: var(--color-jersey-500);
+    background-color: var(--color-jersey-100);
+    color: var(--color-jersey-800);
+    font-weight: var(--font-weight-medium);
   }
   
   .answer-option-correct {
-    @apply border-pitch-500 bg-pitch-100 text-pitch-800 font-medium animate-pulse-winner;
+    border-color: var(--color-pitch-500);
+    background-color: var(--color-pitch-100);
+    color: var(--color-pitch-800);
+    font-weight: var(--font-weight-medium);
+    animation: pulse-winner 1.5s infinite;
   }
   
   .answer-option-incorrect {
-    @apply border-error-500 bg-error-100 text-error-800 font-medium animate-shake;
+    border-color: var(--color-error-500);
+    background-color: var(--color-error-100);
+    color: var(--color-error-800);
+    font-weight: var(--font-weight-medium);
+    animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both;
   }
   
   .badge {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    display: inline-flex;
+    align-items: center;
+    padding-left: calc(var(--spacing) * 2.5);
+    padding-right: calc(var(--spacing) * 2.5);
+    padding-top: calc(var(--spacing) * 0.5);
+    padding-bottom: calc(var(--spacing) * 0.5);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium);
   }
   
   .badge-easy {
-    @apply bg-pitch-100 text-pitch-800;
+    background-color: var(--color-pitch-100);
+    color: var(--color-pitch-800);
   }
   
   .badge-medium {
-    @apply bg-referee-100 text-referee-800;
+    background-color: var(--color-referee-100);
+    color: var(--color-referee-800);
   }
   
   .badge-hard {
-    @apply bg-error-100 text-error-800;
+    background-color: var(--color-error-100);
+    color: var(--color-error-800);
   }
   
   .game-modal {
-    @apply fixed inset-0 flex items-center justify-center z-50 p-4 bg-crowd-900 bg-opacity-40 backdrop-blur-sm transition-all duration-300;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    padding: calc(var(--spacing) * 4);
+    background-color: var(--color-crowd-900);
+    background-opacity: 40%;
+    backdrop-filter: blur(4px);
+    transition-property: all;
+    transition-duration: 300ms;
   }
   
   .game-modal-content {
-    @apply bg-gradient-to-br from-white to-pitch-50 rounded-2xl shadow-2xl max-w-lg w-full mx-auto overflow-hidden relative transform transition-all duration-300;
+    background-image: linear-gradient(to bottom right, white, var(--color-pitch-50));
+    border-radius: calc(var(--radius-lg) * 2);
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    max-width: 32rem;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    transition-property: all;
+    transition-duration: 300ms;
   }
   
   .game-modal-header {
-    @apply bg-gradient-to-r from-pitch-500 to-pitch-600 px-6 py-4 text-white flex items-center justify-between;
+    background-image: linear-gradient(to right, var(--color-pitch-500), var(--color-pitch-600));
+    padding-left: calc(var(--spacing) * 6);
+    padding-right: calc(var(--spacing) * 6);
+    padding-top: calc(var(--spacing) * 4);
+    padding-bottom: calc(var(--spacing) * 4);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   
   .game-modal-body {
-    @apply p-6;
+    padding: calc(var(--spacing) * 6);
   }
   
   .scoreboard {
-    @apply bg-white rounded-lg shadow-md p-4 flex items-center justify-between;
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    padding: calc(var(--spacing) * 4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   
   .timer-bar {
-    @apply h-2 bg-crowd-200 rounded-full overflow-hidden;
+    height: 0.5rem;
+    background-color: var(--color-crowd-200);
+    border-radius: var(--radius-full);
+    overflow: hidden;
   }
   
   .timer-progress {
-    @apply h-full bg-jersey-500 transition-all duration-100;
+    height: 100%;
+    background-color: var(--color-jersey-500);
+    transition-property: all;
+    transition-duration: 100ms;
   }
   
   .power-up-btn {
-    @apply flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-crowd-600 hover:text-champion-500 transition-all hover:scale-110 active:scale-95;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-full);
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    color: var(--color-crowd-600);
+    transition-property: all;
+  }
+  
+  .power-up-btn:hover {
+    color: var(--color-champion-500);
+    transform: scale(1.1);
+  }
+  
+  .power-up-btn:active {
+    transform: scale(0.95);
   }
   
   .streak-counter {
-    @apply flex items-center text-sm font-semibold;
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-semibold);
   }
   
   .streak-counter-icon {
-    @apply text-referee-500 mr-1;
+    color: var(--color-referee-500);
+    margin-right: calc(var(--spacing) * 1);
   }
   
   .confetti {
-    @apply pointer-events-none absolute w-4 h-4 rounded-full;
+    pointer-events: none;
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    border-radius: var(--radius-full);
   }
   
   .confetti-slow {

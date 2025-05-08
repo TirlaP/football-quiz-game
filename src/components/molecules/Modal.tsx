@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, AlertCircle, Trophy, Medal, Star, Award, ThumbsUp } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -7,7 +7,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
   variant?: 'default' | 'success' | 'error' | 'warning' | 'achievement' | 'reward';
   showCloseButton?: boolean;
